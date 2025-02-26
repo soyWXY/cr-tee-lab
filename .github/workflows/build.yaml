@@ -17,7 +17,7 @@ jobs:
       - name: Install VirtualBox and Dependencies
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso
+          sudo apt-get install -y virtualbox virtualbox-guest-additions-iso
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
