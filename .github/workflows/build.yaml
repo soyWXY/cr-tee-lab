@@ -16,7 +16,7 @@ jobs:
 
       - name: Install qemu
         run: |
-          apt-get install -y qemu-system
+          sudo apt-get install -y qemu-system
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v3
 
