@@ -14,11 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install qemu
+      - name: Install VirtualBox and Dependencies
         run: |
-          sudo apt-get install -y qemu-system
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
+          sudo apt-get update -y
+          sudo apt-get install -y virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
@@ -36,9 +35,9 @@ jobs:
 
       - name: Build packer image
         run: |
-          packer build .
+          packer build -only=virtualbox-iso.practice-vm .
 
       - uses: actions/upload-artifact@v4
         with:
           name: practice-vm
-          path: practice-vm.vdi
+          path: build/practice-vm.vdi

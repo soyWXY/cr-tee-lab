@@ -8,6 +8,10 @@ packer {
             version = "~> 1"
             source = "github.com/hashicorp/vagrant"
         }
+        virtualbox = {
+            version = "~> 1"
+            source  = "github.com/hashicorp/virtualbox"
+        }
     }
 }
 
@@ -42,12 +46,30 @@ source "qemu" "practice-vm" {
     shutdown_timeout = "10h"
 }
 
-build {
-    sources = ["sources.qemu.practice-vm"]
+source "virtualbox-iso" "practice-vm" {
+    vm_name = "practice-vm"
+    guest_os_type = "Ubuntu_64"
+    iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
+    iso_checksum            = "file:https://releases.ubuntu.com/noble/SHA256SUMS"
+    output_directory = "build"
+    headless = true
+    memory = 4096
+    cpus = 4
+    vrdp_bind_address = "0.0.0.0"
+    communicator = "ssh"
+    ssh_pty = true
+    ssh_username = "ubuntu"
+    ssh_password = "ubuntu"
+    ssh_timeout = "10h"
+    shutdown_command  = "echo 'ubuntu' | sudo -S shutdown -P now"
+    shutdown_timeout = "10h"
+    http_directory = "cloud-init"
+    boot_command = [
+        "<wait>e",
+        "<wait><down><down><down><end><left><left><left><left> autoinstall ip=dhcp cloud-config-url=http://{{.HTTPIP}}:{{.HTTPPort}}/autoinstall.yaml<wait><f10><wait>"
+    ]
+}
 
-    post-processor "shell-local" {
-        inline = [
-            "qemu-img convert -f qcow2 build/practice-vm -O vdi practice-vm.vdi"
-        ]
-    }
+build {
+    sources = ["sources.qemu.practice-vm", "sources.virtualbox-iso.practice-vm"]
 }
