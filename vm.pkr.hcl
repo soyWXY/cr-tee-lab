@@ -49,6 +49,7 @@ source "qemu" "practice-vm" {
 source "virtualbox-iso" "practice-vm" {
     vm_name = "practice-vm"
     guest_os_type = "Ubuntu_64"
+    hard_drive_discard = true
     format = "ova"
     iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
     iso_checksum            = "file:https://releases.ubuntu.com/noble/SHA256SUMS"
@@ -73,4 +74,13 @@ source "virtualbox-iso" "practice-vm" {
 
 build {
     sources = ["sources.qemu.practice-vm", "sources.virtualbox-iso.practice-vm"]
+
+    provisioner "shell" {
+        inline = [
+            "echo 'ubuntu' | sudo -S apt-get autoremove",
+            "echo 'ubuntu' | sudo -S apt-get clean",
+            "echo 'ubuntu' | sudo -S rm -rf /var/log/*",
+            "echo 'ubuntu' | sudo -S fstrim /"
+        ]
+    }
 }
