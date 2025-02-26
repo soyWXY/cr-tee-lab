@@ -49,6 +49,7 @@ source "qemu" "practice-vm" {
 source "virtualbox-iso" "practice-vm" {
     vm_name = "practice-vm"
     guest_os_type = "Ubuntu_64"
+    format = "ova"
     iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
     iso_checksum            = "file:https://releases.ubuntu.com/noble/SHA256SUMS"
     output_directory = "build"
