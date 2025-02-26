@@ -36,16 +36,4 @@ autoinstall:
 
     # GUI
     - ubuntu-desktop-minimal
-
-  late_commands:
-    # Optimize disk space
-    - curtin in-target -- dd if=/dev/zero of=/ZEROFILL bs=1M || true
-    - curtin in-target -- rm /ZEROFILL
-    - curtin in-target -- sync
-
-    # Disable mitigations
-    - >-
-      curtin in-target --
-      sed -i /etc/default/grub -e
-      's/GRUB_CMDLINE_LINUX=".*/GRUB_CMDLINE_LINUX="mitigations=off"/'
-    - curtin in-target -- update-grub
+    - virtualbox-guest-x11 
