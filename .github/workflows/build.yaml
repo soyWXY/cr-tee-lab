@@ -14,8 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+      - name: Install qemu
+        run: |
+          apt-get install -y qemu-system
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v3
 
       - name: Setup `packer`
         uses: hashicorp/setup-packer@main
