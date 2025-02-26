@@ -2,9 +2,15 @@ name: Build packer vm
 
 on:
   push:
-
-env:
-  PRODUCT_VERSION: "1.10.0" # or: "latest"
+    paths:
+      - '.github/workflows/**'
+      - 'cloud-init/**' 
+      - '*.pkr.hcl'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'cloud-init/**'
+      - '*.pkr.hcl'
 
 jobs:
   packer:
@@ -37,8 +43,12 @@ jobs:
         run: |
           packer build -only=virtualbox-iso.practice-vm .
 
-      - uses: actions/upload-artifact@v4
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: practice-vm
-          path: build/practice-vm.ova
-          compression-level: 9
+          make_latest: true
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          prerelease: false
+          files: |
+            build/practice-vm.ova
