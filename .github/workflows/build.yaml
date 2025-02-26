@@ -1,0 +1,38 @@
+name: Build packer vm
+
+on:
+  push:
+
+env:
+  PRODUCT_VERSION: "1.10.0" # or: "latest"
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    name: Run Packer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: latest
+
+      - name: Run `packer init`
+        id: init
+        run: packer init .
+
+      - name: Run `packer validate`
+        id: validate
+        run: packer validate .
+
+      - name: Build packer image
+        run: |
+          packer build .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: practice-vm
+          path: practice-vm.vdi

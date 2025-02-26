@@ -1,0 +1,54 @@
+packer {
+    required_plugins {
+        qemu = {
+            version = "~> 1"
+            source  = "github.com/hashicorp/qemu"
+        }
+        vagrant = {
+            version = "~> 1"
+            source = "github.com/hashicorp/vagrant"
+        }
+    }
+}
+
+source "qemu" "practice-vm" {
+    iso_url = "https://free.nchc.org.tw/ubuntu-cd/24.04/ubuntu-24.04.2-live-server-amd64.iso"
+    # iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
+    iso_checksum            = "file:https://releases.ubuntu.com/noble/SHA256SUMS"
+    disk_size = "10000M"
+    memory = "4096"
+    cores = 2
+    threads = 2
+    output_directory = "build"
+    format = "qcow2"
+    vm_name = "practice-vm"
+    net_device        = "virtio-net"
+    disk_interface    = "virtio"
+    headless = true
+    vnc_bind_address = "0.0.0.0"
+    vnc_use_password = true
+    accelerator       = "kvm"
+    boot_wait         = "10s"
+    http_directory = "cloud-init"
+    boot_steps = [
+        ["<wait>e", "Wait for GRUB menu, and enter command edit mode."],
+        ["<wait><down><down><down><end><left><left><left><left> autoinstall ip=dhcp cloud-config-url=http://{{.HTTPIP}}:{{.HTTPPort}}/autoinstall.yaml<wait><f10><wait>", "Enter the command to bootstrap the autoinstall.yaml"]
+    ]
+    communicator = "ssh"
+    ssh_pty = true
+    ssh_username = "ubuntu"
+    ssh_password = "ubuntu"
+    ssh_timeout = "10h"
+    shutdown_command  = "echo 'ubuntu' | sudo -S shutdown -P now"
+    shutdown_timeout = "10h"
+}
+
+build {
+    sources = ["sources.qemu.practice-vm"]
+
+    post-processor "shell-local" {
+        inline = [
+            "qemu-img convert -f qcow2 build/practice-vm -O vdi practice-vm.vdi"
+        ]
+    }
+}
