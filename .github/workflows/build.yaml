@@ -12,6 +12,9 @@ on:
       - 'cloud-init/**'
       - '*.pkr.hcl'
 
+permissions:
+  contents: write
+
 jobs:
   packer:
     runs-on: ubuntu-latest
