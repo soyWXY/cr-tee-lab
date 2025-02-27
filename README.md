@@ -1,6 +1,8 @@
 # 布署你的開發環境
 
 ## 1. 使用我們設定好的VirtualBox
+- 使用者帳號: `ubuntu`
+- 使用者密碼: `ubuntu`
 - https://drive.google.com/drive/folders/1LbSv4U3Q2M-KiFXZMa5NezVZr4TO6bP2?usp=sharing
 <details>
     <summary>
