@@ -87,9 +87,6 @@ build {
             # Enable dark mode by default
             "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'",
 
-            # Install vscode extension
-            "/snap/bin/code --install-extension ms-vscode.cpptools-extension-pack",
-
             # Fix the boot lagging issue (we already have NetworkManager)
             "echo 'ubuntu' | sudo -S systemctl disable systemd-networkd",
 
