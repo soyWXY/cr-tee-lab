@@ -63,7 +63,8 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           make_latest: true
           generate_release_notes: true
-          fail_on_unmatched_files: true
+          fail_on_unmatched_files: false
           prerelease: false
           files: |
+            build/practice-vm.zip
             build/practice-vm.z*
