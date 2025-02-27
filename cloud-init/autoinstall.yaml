@@ -21,6 +21,11 @@ autoinstall:
     layout:
       name: direct
 
+  snaps:
+    - name: code
+      channel: stable
+      classic: true
+
   packages:
     # 基本
     - vim 
