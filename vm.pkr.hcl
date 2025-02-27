@@ -85,7 +85,10 @@ build {
             "echo 'ubuntu' | sudo -S ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/asm",
 
             # Setup Virtualbox clipboard
-            "echo 'ubuntu' | sudo -S VBoxClient --clipboard"
+            "echo 'ubuntu' | sudo -S VBoxClient --clipboard",
+
+            # Pull down the required repository
+            "git clone https://github.com/easy-ebpf/lab-1 ~/Desktop/lab-1"
         ]
     }
 
