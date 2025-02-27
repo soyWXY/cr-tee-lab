@@ -57,6 +57,9 @@ source "virtualbox-iso" "practice-vm" {
     headless = true
     memory = 4096
     cpus = 4
+    vboxmanage = [
+        ["modifyvm", "{{.Name}}", "--vram", "128"]
+    ]
     vrdp_bind_address = "0.0.0.0"
     communicator = "ssh"
     ssh_pty = true
