@@ -75,6 +75,21 @@ source "virtualbox-iso" "practice-vm" {
 build {
     sources = ["sources.qemu.practice-vm", "sources.virtualbox-iso.practice-vm"]
 
+    # Setup for development
+    provisioner "shell" {
+        inline = [
+            # Setup vscode
+            "wget 'https://go.microsoft.com/fwlink/?LinkID=760868' -O code.deb",
+            "echo 'ubuntu' | sudo -S dpkg -i ./code.deb",
+            "echo 'ubuntu' | sudo -S apt-get install -f",
+            "rm ./code.deb",
+
+            # Setup Virtualbox clipboard
+            "echo 'ubuntu' | sudo -S VBoxClient --clipboard"
+        ]
+    }
+
+    # Optimize VM size
     provisioner "shell" {
         inline = [
             "echo 'ubuntu' | sudo -S apt-get autoremove",
