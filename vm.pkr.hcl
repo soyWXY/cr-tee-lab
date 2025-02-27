@@ -81,6 +81,9 @@ build {
     # Setup for development
     provisioner "shell" {
         inline = [
+            # Fix the boot lagging issue (we already have NetworkManager)
+            "echo 'ubuntu' | sudo -S systemctl disable systemd-networkd",
+
             # Patch compiler error
             "echo 'ubuntu' | sudo -S ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/asm",
 
