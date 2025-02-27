@@ -78,10 +78,6 @@ build {
     # Setup for development
     provisioner "shell" {
         inline = [
-            # Setup vscode
-            "echo 'ubuntu' | sudo -S apt-get update -y",
-            "echo 'ubuntu' | sudo -S apt-get install -y code",
-
             # Setup Virtualbox clipboard
             "echo 'ubuntu' | sudo -S VBoxClient --clipboard"
         ]
