@@ -79,9 +79,7 @@ build {
     provisioner "shell" {
         inline = [
             # Setup vscode
-            "wget 'https://go.microsoft.com/fwlink/?LinkID=760868' -O code.deb",
-            "echo 'ubuntu' | sudo -S apt install -y ./code.deb",
-            "rm ./code.deb",
+            "echo 'ubuntu' | sudo -S apt-get install -y code",
 
             # Setup Virtualbox clipboard
             "echo 'ubuntu' | sudo -S VBoxClient --clipboard"

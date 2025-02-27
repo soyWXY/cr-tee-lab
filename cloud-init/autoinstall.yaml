@@ -37,3 +37,6 @@ autoinstall:
     # GUI
     - ubuntu-desktop-minimal
     - virtualbox-guest-x11 
+
+  debconf-selections: |
+    code  code/add-microsoft-repo boolean true
