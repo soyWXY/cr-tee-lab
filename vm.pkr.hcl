@@ -81,6 +81,12 @@ build {
     # Setup for development
     provisioner "shell" {
         inline = [
+            # Disable auto-dimming the screen
+            "gsettings set org.gnome.desktop.session idle-delay 0",
+
+            # Enable dark mode by default
+            "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'",
+
             # Fix the boot lagging issue (we already have NetworkManager)
             "echo 'ubuntu' | sudo -S systemctl disable systemd-networkd",
 
