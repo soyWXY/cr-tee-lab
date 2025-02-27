@@ -3,8 +3,8 @@
 ## 1. 使用我們設定好的VirtualBox
 ### a. Google Drive
 - https://drive.google.com/drive/folders/1LbSv4U3Q2M-KiFXZMa5NezVZr4TO6bP2?usp=sharing
-- 使用者帳號: `ubuntu`
-- 使用者密碼: `ubuntu`
+- 使用者帳號: `user`
+- 使用者密碼: `0000`
 
 ### b. GitHub Release
 - https://github.com/easy-ebpf/practice_vm/releases/latest
