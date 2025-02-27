@@ -80,8 +80,7 @@ build {
         inline = [
             # Setup vscode
             "wget 'https://go.microsoft.com/fwlink/?LinkID=760868' -O code.deb",
-            "echo 'ubuntu' | sudo -S dpkg -i ./code.deb",
-            "echo 'ubuntu' | sudo -S apt-get install -f",
+            "echo 'ubuntu' | sudo -S apt install -y ./code.deb",
             "rm ./code.deb",
 
             # Setup Virtualbox clipboard
