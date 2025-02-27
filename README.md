@@ -1,9 +1,16 @@
 # 布署你的開發環境
 
 ## 1. 使用我們設定好的VirtualBox
+### a. Google Drive
+- https://drive.google.com/drive/folders/1LbSv4U3Q2M-KiFXZMa5NezVZr4TO6bP2?usp=sharing
 - 使用者帳號: `ubuntu`
 - 使用者密碼: `ubuntu`
-- https://drive.google.com/drive/folders/1LbSv4U3Q2M-KiFXZMa5NezVZr4TO6bP2?usp=sharing
+
+### b. GitHub Release
+- https://github.com/easy-ebpf/practice_vm/releases/latest
+- 使用者帳號: `ubuntu`
+- 使用者密碼: `ubuntu`
+- 下載所有zip檔之後解壓就可以得到一個ova檔，再進行匯入即可。
 <details>
     <summary>
     映像檔匯入VirtualBox教學(點我展開)
