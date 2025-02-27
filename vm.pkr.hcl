@@ -79,7 +79,7 @@ build {
     provisioner "shell" {
         inline = [
             # Patch compiler error
-            "echo 'ubuntu' | sudo -S ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/asm"
+            "echo 'ubuntu' | sudo -S ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/asm",
 
             # Setup Virtualbox clipboard
             "echo 'ubuntu' | sudo -S VBoxClient --clipboard"
