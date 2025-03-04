@@ -97,7 +97,7 @@ build {
             "echo 'ubuntu' | sudo -S VBoxClient --clipboard",
 
             # Pull down the required repository
-            "git clone https://github.com/easy-ebpf/lab-1 ~/Desktop/lab-1"
+            "git clone https://github.com/easy-ebpf/lab ~/Desktop/lab"
         ]
     }
 
