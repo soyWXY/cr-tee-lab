@@ -67,6 +67,11 @@ build {
             "echo 'ubuntu' | sudo -S mv ~/repo /bin/repo",
             "echo 'ubuntu' | sudo -S chmod a+x /bin/repo",
 
+            # Configure git identity
+            "git config --global user.name 'SCOPELAB'",
+            "git config --global user.email 'whoami@scope.lab'",
+
+            # Setup the optee project
             "mkdir optee && cd optee",
             "repo init -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml",
             "repo sync",
