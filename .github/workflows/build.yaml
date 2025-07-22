@@ -6,8 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/**'
-      - 'cloud-init/**' 
-      - '*.pkr.hcl'
+      - 'build-image/**'
   pull_request:
     branches:
       - main
