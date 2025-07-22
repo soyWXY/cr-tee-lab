@@ -59,18 +59,22 @@ build {
             # Fix the boot lagging issue (we already have NetworkManager)
             "echo 'ubuntu' | sudo -S systemctl disable systemd-networkd",
 
-            # Patch compiler error
-            "echo 'ubuntu' | sudo -S ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/asm",
-
             # Setup Virtualbox clipboard
             "echo 'ubuntu' | sudo -S VBoxClient --clipboard",
 
-            # Pull down the required repository
-            "git clone https://github.com/easy-ebpf/lab ~/Desktop/lab",
-
             # Install additional tools
-            "curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo",
-            "sudo -u ubuntu bash scripts/setup-repo.sh"
+            "curl -L https://storage.googleapis.com/git-repo-downloads/repo > ~/repo",
+            "echo 'ubuntu' | sudo -S mv ~/repo /bin/repo",
+            "echo 'ubuntu' | sudo -S chmod a+x /bin/repo",
+
+            "mkdir optee && cd optee",
+            "repo init -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml",
+            "repo sync",
+            "rm -rf optee_examples/aes",
+            "cd build",
+            "make toolchains",
+            "make",
+            "git clone https://github.com/NTHU-SCOPELAB/cr-tee-image.git ~/"
         ]
     }
 
