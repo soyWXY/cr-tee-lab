@@ -13,8 +13,7 @@ on:
       - main
     paths:
       - '.github/workflows/**'
-      - 'build-image/cloud-init/**'
-      - 'build-image/*.pkr.hcl'
+      - 'build-image/**'
 
 permissions:
   contents: write

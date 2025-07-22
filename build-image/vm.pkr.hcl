@@ -45,7 +45,7 @@ source "virtualbox-iso" "practice-vm" {
 }
 
 build {
-    sources = ["sources.qemu.practice-vm", "sources.virtualbox-iso.practice-vm"]
+    sources = ["sources.virtualbox-iso.practice-vm"]
 
     # Setup for development
     provisioner "shell" {
@@ -66,10 +66,10 @@ build {
             "echo 'ubuntu' | sudo -S VBoxClient --clipboard",
 
             # Pull down the required repository
-            "git clone https://github.com/easy-ebpf/lab ~/Desktop/lab"
+            "git clone https://github.com/easy-ebpf/lab ~/Desktop/lab",
 
             # Install additional tools
-            "curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo"
+            "curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo",
             "sudo -u ubuntu bash scripts/setup-repo.sh"
         ]
     }
