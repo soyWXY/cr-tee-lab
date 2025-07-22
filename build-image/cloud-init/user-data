@@ -80,7 +80,8 @@ autoinstall:
     - xsltproc
     - xterm
     - xz-utils
-    - zlib1g-d
+    - zlib1g-dev
+    - zlib1g
 
     # 基本
     - vim 

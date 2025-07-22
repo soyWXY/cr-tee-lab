@@ -20,7 +20,7 @@ source "virtualbox-iso" "practice-vm" {
     guest_os_type = "Ubuntu_64"
     hard_drive_discard = true
     format = "ova"
-    iso_url = "https://releases.ubuntu.com/jammy/ubuntu-22.04.5-desktop-amd64.iso"
+    iso_url = "https://releases.ubuntu.com/jammy/ubuntu-22.04.5-live-server-amd64.iso"
     iso_checksum            = "file:https://releases.ubuntu.com/jammy/SHA256SUMS"
     output_directory = "build"
     headless = true
@@ -40,7 +40,7 @@ source "virtualbox-iso" "practice-vm" {
     http_directory = "cloud-init"
     boot_command = [
         "<wait>e",
-        "<wait><down><down><down><end><left><left><left><left> autoinstall ip=dhcp cloud-config-url=http://{{.HTTPIP}}:{{.HTTPPort}}/autoinstall.yaml<wait><f10><wait>"
+        "<wait><down><down><down><end><left><left><left><left> autoinstall ip=dhcp ds=nocloud\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/<wait><f10><wait>"
     ]
 }
 
