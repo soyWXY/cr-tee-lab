@@ -15,44 +15,13 @@ packer {
     }
 }
 
-source "qemu" "practice-vm" {
-    iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
-    iso_checksum            = "file:https://releases.ubuntu.com/noble/SHA256SUMS"
-    disk_size = "10000M"
-    memory = "4096"
-    cores = 2
-    threads = 2
-    output_directory = "build"
-    format = "qcow2"
-    vm_name = "practice-vm"
-    net_device        = "virtio-net"
-    disk_interface    = "virtio"
-    headless = true
-    vnc_bind_address = "0.0.0.0"
-    vnc_use_password = true
-    accelerator       = "kvm"
-    boot_wait         = "10s"
-    http_directory = "cloud-init"
-    boot_steps = [
-        ["<wait>e", "Wait for GRUB menu, and enter command edit mode."],
-        ["<wait><down><down><down><end><left><left><left><left> autoinstall ip=dhcp cloud-config-url=http://{{.HTTPIP}}:{{.HTTPPort}}/autoinstall.yaml<wait><f10><wait>", "Enter the command to bootstrap the autoinstall.yaml"]
-    ]
-    communicator = "ssh"
-    ssh_pty = true
-    ssh_username = "ubuntu"
-    ssh_password = "ubuntu"
-    ssh_timeout = "10h"
-    shutdown_command  = "echo 'ubuntu' | sudo -S shutdown -P now"
-    shutdown_timeout = "10h"
-}
-
 source "virtualbox-iso" "practice-vm" {
     vm_name = "practice-vm"
     guest_os_type = "Ubuntu_64"
     hard_drive_discard = true
     format = "ova"
-    iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
-    iso_checksum            = "file:https://releases.ubuntu.com/noble/SHA256SUMS"
+    iso_url = "https://releases.ubuntu.com/jammy/ubuntu-22.04.5-desktop-amd64.iso"
+    iso_checksum            = "file:https://releases.ubuntu.com/jammy/SHA256SUMS"
     output_directory = "build"
     headless = true
     memory = 4096
@@ -98,6 +67,10 @@ build {
 
             # Pull down the required repository
             "git clone https://github.com/easy-ebpf/lab ~/Desktop/lab"
+
+            # Install additional tools
+            "curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo"
+            "sudo -u ubuntu bash scripts/setup-repo.sh"
         ]
     }
 
