@@ -74,12 +74,11 @@ build {
             # Setup the optee project
             "mkdir optee && cd optee",
             "repo init -u https://github.com/NTHU-SCOPELAB/manifest.git -m qemu_v8.xml",
-            "repo sync",
+            "repo sync -j8",
             "rm -rf optee_examples/aes",
-            "cd build",
-            "make toolchains",
-            "make",
-            "git clone https://github.com/NTHU-SCOPELAB/cr-tee-image.git ~/"
+            "wget http://{{.HTTPIP}}:{{.HTTPPort}}/setup-script.sh -O ~/Desktop/setup-script.sh",
+            "chmod +x ~/Desktop/setup-script.sh",
+            "git clone https://github.com/NTHU-SCOPELAB/cr-tee-image.git ~/Desktop/aes"
         ]
     }
 
