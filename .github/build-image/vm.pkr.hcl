@@ -80,7 +80,7 @@ build {
 
             # Setup scripts for compilation
             "echo 'Downloading setup scripts from HTTP server...'",
-            "wget -O ~/setup-script.sh https://raw.githubusercontent.com/NTHU-SCOPELAB/cr-tee-image/refs/heads/main/build-image/cloud-init/setup-script.sh",
+            "wget -O ~/setup-script.sh https://raw.githubusercontent.com/NTHU-SCOPELAB/cr-tee-image/refs/heads/main/.github/build-image/cloud-init/setup-script.sh",
 
             # Clone the example
             "git clone https://github.com/NTHU-SCOPELAB/cr-tee-image.git ~/aes"

@@ -35,17 +35,17 @@ jobs:
           version: latest
 
       - name: Run `packer init`
-        working-directory: ./build-image
+        working-directory: ./.github/build-image
         id: init
         run: PACKER_GITHUB_API_TOKEN=${{ secrets.GITHUB_TOKEN }} packer init .
 
       - name: Run `packer validate`
-        working-directory: ./build-image
+        working-directory: ./.github/build-image
         id: validate
         run: packer validate .
 
       - name: Build packer image
-        working-directory: ./build-image
+        working-directory: ./.github/build-image
         run: |
           packer build -only=virtualbox-iso.practice-vm .
 
@@ -56,7 +56,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Split the vm file in to chunks of 2G before uploading
-        working-directory: ./build-image/build
+        working-directory: ./.github/build-image/build
         run: |
           zip -s 1900m -r -0 practice-vm.zip practice-vm.ova
 
@@ -69,4 +69,4 @@ jobs:
           fail_on_unmatched_files: false
           prerelease: false
           files: |
-            build-image/build/practice-vm.z*
+            .github/build-image/build/practice-vm.z*
