@@ -4,15 +4,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '.github/workflows/**'
-      - 'build-image/**'
   pull_request:
     branches:
       - main
-    paths:
-      - '.github/workflows/**'
-      - 'build-image/**'
 
 permissions:
   contents: write
@@ -22,12 +16,56 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build-source:
+    runs-on: ubuntu-latest
+    name: Build optee source code
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup optee
+        run: |
+          curl -L https://storage.googleapis.com/git-repo-downloads/repo > ~/repo
+          sudo mv ~/repo /bin/repo
+          sudo chmod a+x /bin/repo
+          git config --global user.name 'SCOPELAB'
+          git config --global user.email 'whoami@scope.lab'
+
+      - name: Clone optee source code and build
+        run: |
+          mkdir -p ~/optee
+          cd ~/optee
+          repo init -u https://github.com/NTHU-SCOPELAB/manifest.git -m qemu_v8.xml
+          repo sync
+          rm -rf optee_examples/aes
+          cd build
+          make -j4 toolchains
+          make -j4
+
+      - name: Upload built optee binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: optee_binary
+          path: ~/optee
+
+
   packer:
     runs-on: ubuntu-latest
+    needs: build-source
     name: Run Packer
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Download built optee binary
+        uses: actions/download-artifact@v4
+        with:
+          name: optee_binary
+          path: ./build-image/cloud-init
+
+      - name: Check the downloaded artifact
+        run: |
+          ls -la ./build-image/cloud-init
 
       - name: Install VirtualBox and Dependencies
         run: |
