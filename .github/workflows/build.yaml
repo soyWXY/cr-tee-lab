@@ -37,7 +37,7 @@ jobs:
       - name: Run `packer init`
         working-directory: ./build-image
         id: init
-        run: packer init .
+        run: PACKER_GITHUB_API_TOKEN=${{ secrets.GITHUB_TOKEN }} packer init .
 
       - name: Run `packer validate`
         working-directory: ./build-image
