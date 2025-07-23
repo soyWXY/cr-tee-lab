@@ -82,6 +82,7 @@ autoinstall:
     - xz-utils
     - zlib1g-dev
     - zlib1g
+    - libgnutls28-dev
 
     # 基本
     - vim 

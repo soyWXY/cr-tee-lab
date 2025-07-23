@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build-source:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: Build optee source code
     steps:
       - name: Checkout
@@ -30,23 +30,88 @@ jobs:
           sudo chmod a+x /bin/repo
           git config --global user.name 'SCOPELAB'
           git config --global user.email 'whoami@scope.lab'
+          sudo apt-get update -y
+          sudo apt-get install -y \
+            adb \
+            acpica-tools \
+            autoconf \
+            automake \
+            bc \
+            bison \
+            build-essential \
+            ccache \
+            cpio \
+            cscope \
+            curl \
+            device-tree-compiler \
+            e2tools \
+            expect \
+            fastboot \
+            flex \
+            ftp-upload \
+            gdisk \
+            git \
+            libattr1-dev \
+            libcap-ng-dev \
+            libfdt-dev \
+            libftdi-dev \
+            libglib2.0-dev \
+            libgmp3-dev \
+            libhidapi-dev \
+            libmpc-dev \
+            libncurses5-dev \
+            libpixman-1-dev \
+            libslirp-dev \
+            libssl-dev \
+            libtool \
+            libusb-1.0-0-dev \
+            make \
+            mtools \
+            netcat-openbsd \
+            ninja-build \
+            python3-cryptography \
+            python3-pip \
+            python3-pyelftools \
+            python3-serial \
+            python3-tomli \
+            python-is-python3 \
+            rsync \
+            swig \
+            unzip \
+            uuid-dev \
+            wget \
+            xdg-utils \
+            xsltproc \
+            xterm \
+            xz-utils \
+            zlib1g-dev \
+            libgnutls28-dev
 
       - name: Clone optee source code and build
         run: |
           mkdir -p ~/optee
           cd ~/optee
           repo init -u https://github.com/NTHU-SCOPELAB/manifest.git -m qemu_v8.xml
-          repo sync
+          repo sync -j8
           rm -rf optee_examples/aes
-          cd build
+
+      - name: build optee toolchain
+        run: |
+          cd ~/optee/build
           make -j4 toolchains
+
+      - name: build optee
+        run: |
+          cd ~/optee/build
           make -j4
 
       - name: Upload built optee binary
         uses: actions/upload-artifact@v4
         with:
           name: optee_binary
+          include-hidden-files: true
           path: ~/optee
+          compression-level: 9
 
 
   packer:
