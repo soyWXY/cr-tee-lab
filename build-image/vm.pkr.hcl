@@ -80,7 +80,7 @@ build {
 
             # Setup scripts for compilation
             "echo 'Downloading setup scripts from HTTP server...'",
-            "wget http://{{.HTTPIP}}:{{.HTTPPort}}/setup-script.sh -O ~/Desktop/setup-script.sh",
+            "wget -O ~/Desktop/setup-script.sh https://raw.githubusercontent.com/NTHU-SCOPELAB/cr-tee-image/refs/heads/main/build-image/cloud-init/setup-script.sh",
             "chmod +x ~/Desktop/setup-script.sh",
 
             # Clone the example
