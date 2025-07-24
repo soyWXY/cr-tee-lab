@@ -1,6 +1,6 @@
 # 應用開發
 
-<img width="1607" height="1011" alt="image" src="https://github.com/user-attachments/assets/658dcbd0-3a11-495d-af72-84d4922e3894" />
+<img alt="image" src="https://github.com/user-attachments/assets/658dcbd0-3a11-495d-af72-84d4922e3894" />
 
 圖三：TEE 交互
 
