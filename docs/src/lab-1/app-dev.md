@@ -1,6 +1,7 @@
 # 應用開發
 
-![api_design](https://hackmd.io/_uploads/S1cmqLJwlg.png)
+<img width="1607" height="1011" alt="image" src="https://github.com/user-attachments/assets/658dcbd0-3a11-495d-af72-84d4922e3894" />
+
 圖三：TEE 交互
 
 CA 和 TA 的通訊會依序使用圖三列出的 api，由 CA 主動呼叫，最終調用 TA 對應的函式。
