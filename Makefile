@@ -1,7 +1,7 @@
 export V ?= 0
 
 # user-defined necessary variables
-OPTEE_PATH = /home/user/optee
+OPTEE_PATH = $(HOME)/optee
 CROSS_COMPILE = $(OPTEE_PATH)/toolchains/aarch64/bin/aarch64-linux-gnu-
 TA_OUT = out
 BR_ROOT_PATH = $(OPTEE_PATH)/out-br/target
