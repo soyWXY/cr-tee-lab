@@ -1,6 +1,8 @@
 # 實作
 
-課程提供的 aes 專案位於目錄 aes/。aes 依賴 OP-TEE 的專案，並且 OP-TEE 路徑與 aes/Makefile 相符。專案的結構如下：
+課程提供的 aes 專案位於目錄`~/aes`。aes 依賴 OP-TEE 的專案，並且 OP-TEE 路徑與 aes專案中的Makefile記錄的路徑需相符。
+
+專案的結構如下：
 
 - host/：CA 的目錄
     - Makefile：不能直接使用
