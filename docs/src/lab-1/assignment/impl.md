@@ -17,7 +17,7 @@ aes 專案的結構如下：
 - ...
 
 ## 2. 實作內容
-參考`ta/include/aes_ta.h`的檔案內容:  
+參考`ta/include/aes_ta.h`的檔案內容。e.g.  
 <img alt="image" src="https://github.com/user-attachments/assets/b3070c56-31d8-4fea-bcce-e54cfdee0ba3" />
 
 並完成`host/main.c`, `ta/aes_ta.c`中指定的TODO修改。
