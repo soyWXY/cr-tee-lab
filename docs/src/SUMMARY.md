@@ -3,6 +3,7 @@
 - [凖備你的環境](./setup/intro.md)
     - [使用凖備好的VM](./setup/use-vm-env.md)
     - [使用自己的環境](./setup/use-your-env.md)
+    - [編譯並執行OP-TEE](./setup/build-and-run-optee.md)
 
 ---
 # Lab 1: OP-TEE 系統

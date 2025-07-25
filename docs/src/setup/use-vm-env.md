@@ -16,12 +16,3 @@
 ![image](https://github.com/user-attachments/assets/8168913a-6063-4afc-94ec-dcbae7484ccc)
 ![image](https://github.com/user-attachments/assets/d8780cfe-1cde-4f2d-9544-c94588204d2b)
 </details>
-
-
-## 2. 開啟VM後，執行指令編譯環境:
-```bash
-cd build
-make toolchains -j$(nproc)
-make -j$(nproc)
-```
-- 可能會跑一段時間，經過測試4核心的CPU大約需要1小時左右。

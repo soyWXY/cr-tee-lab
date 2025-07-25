@@ -16,13 +16,5 @@ sudo curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && 
 mkdir optee
 cd optee
 repo init -u https://github.com/NTHU-SCOPELAB/cr-tee-manifest.git -m qemu_v8.xml
-repo sync
+repo sync -j$(nproc)
 ```
-
-## 3. 編譯 OP-TEE
-```bash
-cd build
-make toolchains -j$(nproc)
-make -j$(nproc)
-```
-- 可能會跑一段時間，經過測試4核心的CPU大約需要1小時左右。
