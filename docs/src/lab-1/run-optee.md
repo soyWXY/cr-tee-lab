@@ -1,5 +1,15 @@
 # 執行OP-TEE系統
 
+課程提供的 OP-TEE 專案位於目錄 optee/，先建置需要的目標檔案
+
+```bash
+$ cd ~/optee/build
+$ make toolchains -j$(nproc)
+$ make -j$(nproc)
+```
+
+- 可能會跑一段時間，經過測試4核心的CPU大約需要1小時左右。
+
 專案建置完成後，可以啟動 qemu 運行 OP-TEE
 
 ```shell
