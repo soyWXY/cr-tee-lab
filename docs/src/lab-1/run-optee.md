@@ -1,24 +1,16 @@
-# 編譯並執行OP-TEE
+# 執行OP-TEE系統
 
-## 1. 執行指令編譯環境:
-```bash
-cd ~/optee/build
-make toolchains -j$(nproc)
-make -j$(nproc)
-```
-- 可能會跑一段時間，經過測試4核心的CPU大約需要1小時左右。
-
-## 2. 開啟qemu的OP-TEE環境:
 專案建置完成後，可以啟動 qemu 運行 OP-TEE
 
 ```shell
-# 在 build/
+# 在 ~/optee/build/
 $ make run-only
 ```
 
 如果要新增檔案到虛擬機的檔案系統，需要重新執行 buildroot 的建置再啟動 qemu，命令則要改成：
 
 ```shell
+# 在 ~/optee/build/
 $ make run
 ```
 
