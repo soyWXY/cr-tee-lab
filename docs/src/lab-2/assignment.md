@@ -7,11 +7,14 @@
 檔名格式請按照: `HW2_<學號>`。e.g. `HW2_113062595`。
 
 ## 實作
-- 使用底下 UUID 修改 LAB 1 的 aes 專案，根據[簽署操作流程](ta-signing.md)生成 `.ta` 。私鑰使用 default_ta.pem，因此 OP-TEE OS 可以不用重新編譯
+- 使用下方的 UUID 修改 LAB 1 的 aes 專案，並根據[簽署操作流程](ta-signing.md)再次生成 `.ta` (需逐步截圖)。
+- 私鑰使用 default_ta.pem，因此 OP-TEE OS 可以不用重新編譯
 
     ```
+    // 修改~/aes/ta/Makefile中的BINARY (檔名)
     aed564f1-960e-4117-8bb4-417b4e79c130
 
+    // 在~/aes/ta/user_ta_header_defines.h中修改TA_UUID (寫入ELF的UUID)
     #define TA_UUID
         { 0xaed564f1, 0x960e, 0x4117, \
             { 0x8b, 0xb4, 0x41, 0x7b, 0x4e, 0x79, 0xc1, 0x30} }
