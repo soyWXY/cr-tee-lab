@@ -13,4 +13,8 @@
 - [其它資源](./lab-1/resources.md)
 
 ---
-# Lab 2: REE, FS, TA
+# Lab 2: REE FS TA
+- [簡介](./lab-2/intro.md)
+- [Subkey驗證及載入流程](./lab-2/subkey-loading.md)
+- [TA簽署流程](./lab-2/ta-signing.md)
+- [作業說明](./lab-2/assignment.md)
